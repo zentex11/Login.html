@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Flash message container -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Existing code for forms and other elements -->
+        <div class="curved-shape"></div>
+        <div class="curved-shape2"></div>
+        <div class="form-box Login">
+            <h2 class="animation" style="--D:0">Login</h2>
+            <form action="/login" method="post">
+                <div class="input-box animation" style="--D:1">
+                    <input type="text" name="username" required>
+                    <label for="">Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box animation" style="--D:2">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box animation" style="--D:3"> 
+                    <button class="btn" type="submit">Login</button>
+                </div>
+                <div class="regi-link animation" style="--D:4">
+                    <p>Don't have an account ? <a href="#" class="SignUpLink">Sign Up</a></p>
+                    <h6 class="forgot-password"><a href="#">Forgot your password?</a></h6>
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember Me</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="info-content Login">
+            <h2 class="animation" style="--D:0">WELCOME BACK!</h2>
+            <p class="animation" style="--D:1">สวัสดีครับคนน่ารัก</p>
+        </div>
+        <div class="form-box Register">
+            <h2 class="animation" style="--li:17;">Register</h2>
+            <form action="/register" method="post">
+                <div class="input-box animation" style="--li:18;">
+                    <input type="text" name="username" required>
+                    <label for="">Username</label>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box animation" style="--li:19;">
+                    <input type="password" name="password" required>
+                    <label for="">Password</label>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box animation" style="--li:20;"> 
+                    <button class="btn" type="submit">Register</button>
+                </div>
+                <div class="regi-link animation" style="--li:21;">
+                    <p>Already have an account ? <a href="#" class="SignInLink">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="info-content Register">
+            <h2 class="animation" style="--li:17;">WELCOME BACK!</h2>
+            <p class="animation" style="--li:18;">สวัสดีฮาฟฟุ่ววว</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signUpLink = document.querySelector('.SignUpLink');
+            const signInLink = document.querySelector('.SignInLink');
+            const loginBox = document.querySelector('.form-box.Login');
+            const registerBox = document.querySelector('.form-box.Register');
+            const loginInfo = document.querySelector('.info-content.Login');
+            const registerInfo = document.querySelector('.info-content.Register');
+
+            signUpLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginBox.style.display = 'none';
+                loginInfo.style.display = 'none';
+                registerBox.style.display = 'block';
+                registerInfo.style.display = 'block';
+            });
+
+            signInLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginBox.style.display = 'block';
+                loginInfo.style.display = 'block';
+                registerBox.style.display = 'none';
+                registerInfo.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
